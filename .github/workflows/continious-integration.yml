@@ -48,4 +48,4 @@ jobs:
     #  run : docker push ${{vars.CONTAINER_REGISTRY_URL}}/api-gateway:$GITHUB_REF_NAME
       run: |
        CURRENT_FOLDER_NAME=$(basename $(pwd))
-       docker push ${{vars.CONTAINER_REGISTRY_URL}}/$CURRENT_FOLDER_NAME:$GITHUB_REF_NAME
+       docker push ${{vars.CONTAINER_REGISTRY_URL}}/$CURRENT_FOLDER_NAME:main
