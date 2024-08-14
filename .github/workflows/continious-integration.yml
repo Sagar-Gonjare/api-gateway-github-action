@@ -39,8 +39,8 @@ jobs:
   #    run : mvn clean install docker build -Dimage.registry=${{variables.CONTAINER_REGISTRY_URL}} -Dimage.tag=$GITHUB_REF_NAME
      
     - name : log in into github registry
-      uses : docker/login-action@v2
-      with :
-        username: ${{secrets.DOCKER_REGISTRY_USER}}
+      uses: docker/login-action@v2
+      with:
+        username: ${{vars.DOCKER_REGISTRY_USER}}
         password: ${{secrets.DOCKER_REGISTRY_PASS}}
    
