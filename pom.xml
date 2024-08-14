@@ -6,6 +6,8 @@
 	<properties>
 		<maven.compiler.target>17</maven.compiler.target>
 		<maven.compiler.source>17</maven.compiler.source>
+		<image.registry>dnyanyog.org</image.registry>
+		<image.tag>latest</image.tag>
 	</properties>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -45,13 +47,43 @@
 					</execution>
 				</executions>
 			</plugin>
-			 <plugin>
-            			<groupId>org.sonatype.ossindex.maven</groupId>
-           			 <artifactId>ossindex-maven-plugin</artifactId>
-           			 <version>3.1.0</version> <!-- Make sure the version is correct -->
-        		</plugin>
-   		 
+			<plugin>
+				<groupId>org.sonatype.ossindex.maven</groupId>
+				<artifactId>ossindex-maven-plugin</artifactId>
+				<configuration>
+					<reportFile>${project.build.directory}/audit-report.json</reportFile>
+					<!--fail>true</fail-->
+				</configuration>
+				<executions>
+					<execution>
+						<id>audit-dependencies</id>
+						<goals>
+							<goal>audit</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.44.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<images>
+						<image>
+							<name>${image.registry}/${project.artifactId}:${image.tag}</name>
+							<build>
+								<dockerFile>${project.basedir}/dockerfile</dockerFile>
+								<args>
+									<imageName>${project.artifactId}-latest</imageName>
+								</args>
+							</build>
+						</image>
+					</images>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+</project>
 
 </project>
