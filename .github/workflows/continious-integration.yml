@@ -40,7 +40,7 @@ jobs:
       #-Dimage.registry=${{vars.CONTAINER_REGISTRY_URL}} -Dimage.tag=$GITHUB_REF_NAME
 
     - name : iamge tag 
-      run :  docker tag dnyanyog.org/api_gateway:latest sagargonjare/api_gateway:$GITHUB_REF_NAME
+      run :  docker tag dnyanyog.org/api-gateway:latest sagargonjare/api_gateway:$GITHUB_REF_NAME
       
     - name : log in into github registry
       uses: docker/login-action@v2
