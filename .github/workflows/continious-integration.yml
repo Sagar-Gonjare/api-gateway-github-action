@@ -26,3 +26,6 @@ jobs:
       uses: zricethezav/gitleaks-action@v1.3.0
       with:
         args: --path=.
+
+    - name : OSSS Scan
+      run : mvn ossindex:audit
