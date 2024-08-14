@@ -38,5 +38,5 @@ jobs:
     - name : build code and create docker image 
       run : mvn clean install docker build -Dimage.registry=${{variables.CONTAINER_REGISTRY_URL}} -Dimage.tag=$GITHUB_REF_NAME
      
-      
+    
    
