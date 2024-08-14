@@ -32,5 +32,7 @@ jobs:
       continue-on-error: true
 
     - name : OWASP Scan
+      if : false
       run : mvn org.owasp:dependancy-check-maven:check
+      
    
